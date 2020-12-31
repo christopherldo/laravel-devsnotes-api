@@ -30,10 +30,28 @@ class NoteController extends Controller
     {
         $note = Note::find($id);
 
-        if($note){
+        if ($note) {
             $this->array['result'] = $note;
         } else {
             $this->array['error'] = 'ID not found';
+        };
+
+        return $this->array;
+    }
+
+    public function new(Request $request)
+    {
+        $data = $request->only(['title', 'body']);
+
+        if (isset($data['title']) && isset($data['body'])) {
+            $note = new Note;
+            $note->title = $data['title'];
+            $note->body = $data['body'];
+            $note->save();
+
+            $this->array['result'] = $note;
+        } else {
+            $this->array['error'] = 'Fields not filled';
         };
 
         return $this->array;
