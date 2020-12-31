@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NoteController;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ Route::get('/ping', function(Request $request) {
 
 Route::get('/notes', [NoteController::class, 'all']);
 
-// Route::get('/note/{id}', []);
+Route::get('/note/{id}', [NoteController::class, 'one']);
 
 // Route::post('/note', []);
 

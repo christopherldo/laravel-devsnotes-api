@@ -12,7 +12,8 @@ class NoteController extends Controller
         'result' => []
     ];
 
-    public function all(){
+    public function all()
+    {
         $notes = Note::all();
 
         foreach ($notes as $note) {
@@ -20,6 +21,19 @@ class NoteController extends Controller
                 'id' => $note->id,
                 'title' => $note->title
             ];
+        };
+
+        return $this->array;
+    }
+
+    public function one($id)
+    {
+        $note = Note::find($id);
+
+        if($note){
+            $this->array['result'] = $note;
+        } else {
+            $this->array['error'] = 'ID not found';
         };
 
         return $this->array;
