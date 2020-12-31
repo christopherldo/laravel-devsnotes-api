@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/ping', function(Request $request) {
+    return ['pong' => true];
 });
+
+Route::get('/notes', [NoteController::class, 'all']);
+
+// Route::get('/note/{id}', []);
+
+// Route::post('/note', []);
+
+// Route::put('/note/{id}', []);
+
+// Route::delete('/note/{id}', []);
